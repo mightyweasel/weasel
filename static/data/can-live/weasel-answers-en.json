@@ -7,6 +7,7 @@
 			"key_party": "*",
 			"answer": {
 				"type": "weasel-answer",
+				"action": "display",
 				"media": "<iframe width='958' height='539' src='https://www.youtube.com/embed/0MZvkWhAoEo' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
 				"hyperlink":"https://en.busrides-trajetsenbus.ca/episode-5/",
 				"spoken":"Digital is collaborative, multidisciplinary, open, engaged and authentic. Digital enables citizen-users. With digital we can design services that are convenient, easy to understand and simple to use. The work methods that we usually associate with digital such as experimentation, agile, and open source provide better results for users. They are also more effective in the use of public funds.",
@@ -20,6 +21,7 @@
 			"key_party": "*",
 			"answer": {
 				"type": "weasel-answer",
+				"action": "display",
 				"media": "<iframe width='877' height='493' src='https://www.youtube.com/embed/CQpUmRdJWRw' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
 				"hyperlink":"https://github.com/CSPS-EFPC-DAAN",
 				"spoken":"Weasel is open source. Open-source software development, or collaborative development between multiple independent contributors, generates an increasingly more diverse scope of design perspective than any company is capable of developing and sustaining long term on their own.",
@@ -27,12 +29,167 @@
 			}
 		},
 		{
+			"intent": "access site",
+			"topic_interest": "my service canada",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "access",
+				"media": "<ul><li><a href='https://srv136.services.gc.ca/sc/msca-mdsc/portal-portail/pro/portal/page/portal/msca/private/faces/oracle/webcenter/portalapp/pages/home.jspx'>https://srv136.services.gc.ca/sc/msca-mdsc/portal-portail/pro/portal/page/portal/msca/private/faces/oracle/webcenter/portalapp/pages/home.jspx</a></li> <li><a href='https://www.canada.ca/en/employment-social-development/services/my-account/access.html'>https://www.canada.ca/en/employment-social-development/services/my-account/access.html</a></li> <li><a href='https://www.canada.ca/en/employment-social-development/services/my-account.html'>https://www.canada.ca/en/employment-social-development/services/my-account.html</a></li><li><a href='https://www.canada.ca/en/employment-social-development/corporate/portfolio/service-canada.html'>https://www.canada.ca/en/employment-social-development/corporate/portfolio/service-canada.html</a></li></ul>",
+				"hyperlink": "https://srv136.services.gc.ca/sc/msca-mdsc/portal-portail/pro/portal/page/portal/msca/private/faces/oracle/webcenter/portalapp/pages/home.jspx",
+				"spoken": "My Service Canada Account",
+				"written": "My Service Canada Account"
+			}
+		},
+		{
+			"intent": "access site",
+			"topic_interest": "latest claim status",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "access",
+				"media": "1725987 visitors have accessed the following link",
+				"hyperlink": "https://srv136.services.gc.ca/sc/msca-mdsc/portal-portail/pro/portal/page/portal/msca/private/faces/oracle/webcenter/portalapp/pages/ei-correspondence.jspx",
+				"spoken": "access lastest claim status",
+				"written": "access lastest claim status"				
+			}
+		},
+		{
+			"intent": "access site",
+			"topic_interest": "my account for individuals",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "access",
+				"media": "3016435 visitors have accessed the link I found",
+				"hyperlink": "https://www.canada.ca/en/revenue-agency/services/e-services/e-services-individuals/account-individuals.html",
+				"spoken": "Access My Account for Individuals",
+				"written": "Access My Account for Individuals"
+			}
+		},
+		{
+			"intent": "renew account",
+			"topic_interest": "my passport",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "access",
+				"media": "3016435 visitors have accessed the link I found",
+				"hyperlink": "https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/forms.html",
+				"spoken": "Renew a canadian passport",
+				"written": "Renew a canadian passport"
+			}
+		},		
+		{
+			"intent": "create account",
+			"topic_interest": "immigration account",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "access",
+				"media": "4874424 visitors have accessed the link I found",
+				"hyperlink": "https://www.canada.ca/en/immigration-refugees-citizenship/services/application/account.html",
+				"spoken": "Create an account or sign in to Immigration and citizenship with this link",
+				"written": "Create an account or sign in to Immigration and citizenship with this link"
+			}
+		},		
+		{
+			"intent": "become a citizen",
+			"topic_interest": "*",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "access",
+				"media": "3921122 visitors have accessed the link I found",
+				"hyperlink": "https://www.canada.ca/en/services/immigration-citizenship.html",
+				"spoken": "Become a Canadian citizen, Immigration and citizenship",
+				"written": "Become a Canadian citizen, Immigration and citizenship"
+			}
+		},
+		{
+			"intent": "access site",
+			"topic_interest": "CRA",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "access",
+				"media": "3190145 weasel visitors have accessed the link I found",
+				"hyperlink": "https://www.canada.ca/en/revenue-agency.html",
+				"spoken": "Access Canada Revenue Agency",
+				"written": "Access Canada Revenue Agency"
+			}
+		},
+		{
+			"intent": "search site",
+			"topic_interest": "CRA",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "access",
+				"media": "815354 visitors have accessed the link I found",
+				"hyperlink": "https://www.canada.ca/en/revenue-agency/search.html",
+				"spoken": "Search Canada Revenue Agency",
+				"written": "Search Canada Revenue Agency"
+			}
+		},		
+		{
+			"intent": "access site",
+			"topic_interest": "canada.ca",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "access",
+				"media": "2378528 visitors have accessed the link I found",
+				"hyperlink": "https://www.canada.ca/en.html",
+				"spoken": "Access Canada.ca Home page",
+				"written": "Access Canada.ca Home page"
+			}
+		},
+		{
+			"intent": "learn skill",
+			"topic_interest": "french",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "display",
+				"media": "<iframe width='1280' height='720' src='https://www.youtube.com/embed/AdfwQXJ0ZVM' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+				"hyperlink": "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/new-life-canada/improve-english-french.html",
+				"spoken": "Weasel want everyone to be bilingual. Lets learn a language.",
+				"written": "Canada has two official languages: English and French. English is the most commonly spoken language in most provinces and territories.\nFrench is the main language spoken in Quebec and in some areas of Ontario, New Brunswick and Manitoba. There are also francophone communities in all provinces and territories across Canada. Quebec has a large minority of residents who speak English."
+			}
+		},		
+		{
+			"intent": "skills required",
+			"topic_interest": "*",
+			"impact_on": "*",
+			"key_party": "*",
+			"answer": {
+				"type": "weasel-answer",
+				"action": "display",
+				"media": "<iframe width='1280' height='720' src='https://www.youtube.com/embed/Y9FOyoS3Fag' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
+				"hyperlink": "https://www.canada.ca/en.html",
+				"spoken": "Digital skills include the ability to find, evaluate, utilize, share, and create content using information technologies and the Internet. Digital skills are any skills related to being digitally literate. Anything from the ability to find out your high-score on your favorite game to coding a website counts as a digital skill.",
+				"written": "However, it is not simply the development of old jobs that make digital skills so important in the modern workplace, but the creation of entirely new jobs. There is a genuine fear of a digital skills gap3 created by the boom in the digital economy versus the amount of people who are trained to work in it. Specifically, the UK needs 750,000 more people with digital skills to capitalise on jobs that could boost the UK economy by 12 billion pounds.\nThe digital skills gap should not be something to be afraid of. Rather, it is an opportunity for people of all ages – not just young people – to jump into a new sector or to get a better job in their current one. Half of all British IT teachers don’t have a post-A-level qualification that is relevant to IT, and so schools are eager for teachers who have any kind of degree related to computing4. Being a person with digital skills, in the current economic climate, has never been more lucrative.\nMoreover, attaining these digital skills has never been easier. School coding clubs and professional training companies5 are happy to fill the gap left by the public sector in terms of digital skills, but there are also ways in which a person can develop their digital skills individually. There are programs and services you can use to make sure that you make the most out of your computer. Having a computer desktop that you can navigate quickly and efficiently is fast becoming more important than having a tidy desk."
+			}
+		},		
+		{
 			"intent": "!",
 			"topic_interest": "!",
 			"impact_on": "!",
 			"key_party": "!",
 			"answer": {
 				"type": "weasel-answer",
+				"action": "display",
 				"media": "<iframe width='877' height='493' src='https://www.youtube.com/embed/7H4Zy4fWpmA' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>",
 				"hyperlink":"http://canada.ca",
 				"spoken":"Weasel is sorry.",

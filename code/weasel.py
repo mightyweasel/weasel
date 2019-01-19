@@ -1,4 +1,4 @@
-from flask import (Blueprint, render_template, request, Markup)
+from flask import (Blueprint, render_template, request, redirect, Markup, jsonify)
 from wit import Wit
 import json
 
@@ -8,16 +8,27 @@ import json
 
 bp = Blueprint('weasel', __name__, url_prefix = '/weasel')
 
+# api requests, returns json
+@bp.route('/api', methods = ('GET', 'POST'))
+def serve_api_request():
+	if request.method == 'GET':
+		text = request.args.get('weasel_ask', False)
+		if not text:
+			text = "Weasel is waiting for your input"
+		client = Wit("OTUZQQXJ4DTVBPRLWAXJMSZXSOROZ4PZ")
+		resp = client.message( str(text) )	
+		return jsonify( api_handle_weasel_message(resp) )
+	
 # route/render the home page
 @bp.route('/weasel-index', methods = ('GET', 'POST'))
 def render_index():
 	if request.method == 'GET':
-		return render_template('weasel/index.html',q="Weasel Ready!", weaselanswer=Markup("<p><strong>Weasel Ready</strong></p>"), rawweaselanswer="", rawjson="", rawanswerjson="")
+		return render_template('weasel/index.html',q="Weasel Ready!", a="home", weaselanswer=Markup("<p><strong>Weasel Ready</strong></p>"), rawweaselanswer="", rawjson="", rawanswerjson="")
 
 # route and render the results (we're subbing back to the index with extra data)
 # might want to consider changing this to a template on its own down the road
-@bp.route('/weasel-process-result', methods = ('GET', 'POST'))
-def render_process_result():
+@bp.route('/weasel-answer', methods = ('GET', 'POST'))
+def render_answer():
 	if request.method == 'GET':
 		text = request.args.get('weasel_ask', False)
 		if not text:
@@ -91,33 +102,32 @@ def check_answer(ans,q):
 		return ans
 	return None
 
+# make the html fragment (consider a better solution, template string)
 def generate_weasel_answer_html(ans):
 	written = ""
 	written_lines = ans['answer']['written'].splitlines()
 	for wl in written_lines:
 		written += "<p>" + wl + "</p>"
-	html_snippet = "<div class='weasel_answer_reply'>" \
-		+ "<div id='weasel_spoken'>"+ans['answer']['spoken']+"</div>" \
-		+ "<div><strong><span class='mif-link'></span> Helpful Link:</strong></div><div><a href='" + ans['answer']['hyperlink'] +"'>"+ ans['answer']['hyperlink'] +"</a></div>" \
-		+ "<div class='weasel_written'><strong><span class='mif-bubble'></span> Weasel Thinks:</strong></div><div>" + written + "</div>" \
-		+ "<div class='weasel_media'><strong><span class='mif-video'></span> Helpful Video:</strong></div><div><div class='video-container'>" + ans['answer']['media'] + "</div></div>" \
-		+ "<ul>" \
-			+ "<li><strong><span class='mif-cogs'></span> Weasel Message Signature</strong></li>" \
-			+ "<li>" + ans['intent'] + "</li>" \
-			+ "<li>" + ans['topic_interest'] + "</li>" \
-			+ "<li>" + ans['impact_on'] + "</li>" \
-			+ "<li>" + ans['key_party'] + "</li>" \
-			+ "<li>" + ans['answer']['type'] + "</li>" \
-		+ "</ul>" \
+	html_snippet = "" \
+		+ "<div class='weasel_answer_reply'>" \
+			+ "<div id='weasel_spoken'>"+ans['answer']['spoken']+"</div>" \
+			+ "<div><strong><span class='mif-link'></span> Helpful Link:</strong></div><div><a href='" + ans['answer']['hyperlink'] +"'>"+ ans['answer']['hyperlink'] +"</a></div>" \
+			+ "<div class='weasel_written'><strong><span class='mif-bubble'></span> Weasel Thinks:</strong></div><div>" + written + "</div>" \
+			+ "<div class='weasel_media'><strong><span class='mif-video'></span> Helpful Media:</strong></div><div><div class='video-container'>" + ans['answer']['media'] + "</div></div>" \
+			+ "<div class='weasel_message_signature'>" \
+				+ "<strong><span class='mif-cogs'></span> Weasel Message Signature:</strong>" \
+				+ "" + ans['intent'] + "" \
+				+ " | " + ans['topic_interest'] + "" \
+				+ " | " + ans['impact_on'] + "" \
+				+ " | " + ans['key_party'] + "" \
+				+ " | " + ans['answer']['type'] + "" \
+			+ "</div>" \
 		+ "</div>"
 	return html_snippet
 
-def handle_weasel_message(response):
+# helper for the handlers
+def intuit_valid_answer(response):
 	entities = response['entities']
-	
-	raw_json = json.dumps(response, indent=4, sort_keys=True)
-	raw_answer_json = json.dumps(weasel_answers, indent=4, sort_keys=True)
-	
 	q = {}
 
 	q['intent'] = first_entity_value_rs(entities, 'intent')
@@ -142,9 +152,25 @@ def handle_weasel_message(response):
 				continue
 			result = valid_answer
 			break
+	return valid_answer
 
-	raw_weasel_answer_json = json.dumps(valid_answer, indent=4, sort_keys=True)
-	
+# regular response, returns html to the render
+def handle_weasel_message(response):
+	valid_answer = intuit_valid_answer(response)
+
+	action = valid_answer['answer']['action']
+	if action == "access":
+		return redirect( valid_answer['answer']['hyperlink'] )
+
+	raw_json = json.dumps(response, indent=4, sort_keys=True)
+	raw_answer_json = json.dumps(weasel_answers, indent=4, sort_keys=True)
+	raw_weasel_answer_json = json.dumps(valid_answer, indent=4, sort_keys=True)	
 	html_weasel_answer = Markup( generate_weasel_answer_html(valid_answer) )	
 
-	return render_template('weasel/index.html', q=response['_text'] ,weaselanswer=html_weasel_answer, rawweaselanswer=raw_weasel_answer_json, rawjson=raw_json, rawanswerjson=raw_answer_json)
+	return render_template('weasel/index.html', q=response['_text'], a=action, weaselanswer=html_weasel_answer, rawweaselanswer=raw_weasel_answer_json, rawjson=raw_json, rawanswerjson=raw_answer_json)
+
+# the api return as json response, this can be used for whatever application you like
+def api_handle_weasel_message(response):
+	valid_answer = intuit_valid_answer(response)
+
+	return valid_answer

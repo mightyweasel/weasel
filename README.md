@@ -4,7 +4,9 @@ Weasels are small yet very competent hunters. They can find things and retrieve 
 
 This app is kind of like one of those weasels... It's an app that helps you find things to help you learn stuff or do stuff. Weasel, the Web Enabled AI Support Expression Learner - helping you better understand a digital government (With Easy Available Smart E-Learning) lets you get the information that matters to you. There's a lot of great content and sites out there for us to improve and grow, but sometimes just gettign started is the hard part.
 
-That's where Weasel comes in. You ask weasel "why is digital important for goverment", or "why should TBS care about open source" and weasel will find you online learning tools (and some guiding information to help you get rolling). We don't want to just give you a list, that doesn't help as much as people hope. We aim to give you knowledge, what you can do, how you'd learn, if there are any hints from the experts in the industry.
+That's where Weasel comes in. 
+
+You ask weasel things like **"why is digital important for goverment"**, **"why should TBS care about open source"**, Suggested Weasel Queries: **"why does open souce matter to me"**, **"access my service canada account"**, **"I want to become a citizen"**, **"why does digital matter to my department"**, **"I want to learn french"**, **"Renew my passport"**, **"what skills do I need for digital"** and weasel will find you online learning tools (and some guiding information to help you get rolling). We don't want to just give you a list, that doesn't help as much as people hope. We aim to give you knowledge, what you can do, how you'd learn, if there are any hints from the experts in the industry.
 
 Our goal is to get you learning by clearing the weeds and critters in your path. That's what Weasel is for.
 
@@ -26,9 +28,39 @@ The experimental apps here are built on the following stack:
 
 ### Getting/Refreshing the Data
 
-Since all the data is raw JSON, getting the data is as simple as loading the link. The data was generated manually by doing some legwork for the learner and building an easy to navigate hot list of content.
+All the data is raw JSON, getting the data is as simple as loading the link. The data was generated manually by doing some legwork for the learner and building an easy to navigate hot list of content. 
+
+There's also an api baked in which returns json answers. This can be used to embed weasel functionality into almost any endpoint
+
+```bash
+http://localhost:5050/weasel/api?weasel_ask=why+does+open+source+matter+to+government
+```
 
 > Note: The aspirational goal here is to have a crowd sourced feed in from people who find nice treats on the web or their own expert brains and feed it to the Weasel. As the answer knowledge increases, and we refine the understanding of the model... It could be truly great.
+
+### Weasel answer JSON
+
+The JSON is standard, but we use hints to help serve to best content in the best way. The answer intuition uses a direct match or a * match to determine applicability. Then the action (currently there are display and access) will trigger weasel to do what is needed.
+
+* "display" is used for returning an html answer card with the details available to the user
+* "access" will use the hyperlink and redirect the human to the appropriate link 
+
+```json
+{
+	"intent": "access site",
+	"topic_interest": "canada.ca",
+	"impact_on": "*",
+	"key_party": "*",
+	"answer": {
+		"type": "weasel-answer",
+		"action": "access",
+		"media": "2378528 visitors have accessed the link I found",
+		"hyperlink": "https://www.canada.ca/en.html",
+		"spoken": "Access Canada.ca Home page",
+		"written": "Access Canada.ca Home page"
+	}
+},
+```
 
 ### Building the Stylesheets
 
