@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>alpha | weasel | Using ai to better understand the digital government.</title>
+<link href="http://www.canada.ca/etc/designs/canada/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon"/>
+<!-- Metro 4 -->
+<link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='weasel/css/weasel.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='weasel/css/ermine.css')}}">
+</head>
+<body style="background: rgb(249,249,249);">
+  <div class="container" style="margin-bottom-bottom: -0.5em;">
+    <div class="row">
+        <div class="cell-md-full cell-lg-4">
+            <h1 style="padding:0.3em;">
+                <a class="splash_link" href="{{url_for('weasel.render_ermine')}}"><strong>alpha</strong></a> | ermine
+                <span><strong>it's weasel in a suit</strong></span><a id="top" name="top"></a>
+            </h1>
+        </div>
+        <div class="cell-md-full cell-lg-8">
+            <div class="row">
+                <ul class="h-menu">
+                    <li class="cell-md-full cell-lg-6"><a href="#" class="cell-sm" id="speech_icon_en"><span class="mif-multitrack-audio"></span> Recognize English</a></li> 
+                    <li class="cell-md-full cell-lg-6"><a href="#" id="speech_icon_fr"><span class="mif-multitrack-audio"></span> Reconnaître Français</a></li>
+                </ul>
+            </div>
+            <div class="d-none d-none-sm d-none-md d-block-lg">
+                <div class="row"  style="padding: 1em;">
+                    <span id="tlx_msg"><small>This page uses auto-translations. When the desired term is not available from the application in your language of choice, the application will attempt to translate results automatically. Auto-translations are a convenience feature, official bilingual content is our desired standard.</small></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" id="weasel_help" style="display: none;">
+    <div>
+        <span class="h2">ermine/</span>
+        <span class="h3"> Electronic Resource Mine</span>
+        <p class="h4">Help Guide</p>
+        <div id="help_guide_gi" class="help_guide">
+            <p class="h5">General Information</p>
+            <p>
+                Ermine is built on Weasel (Web Enable AI Support Expression Learner), an experiment
+                by CSPS Digital Academy on what is possible with disruptive technology and agile practices. 
+            </p>
+            <p>
+                Ermine is an early example of Web 3.0 thinking. Aggregation. Execution. Intention understanding. The goal is to get to what you wanted anyway just quicker. It doesn't do any of the work itself, but
+                rather acts as a routing layer on top of many other services.
+            </p>
+            <p>
+                Ermine learns when you search. Each time we submit a query the AI model is given training data to make its predications on intent and content better. In order for it to learn something new we just need to ask it. It will get it wrong until out of the blue, it learns and does what you want. This is a tool that will grow with us. Support the public service in being more efficient and open. Enable citizens to be more engaged with their government and the actions of democracy. This is a tool to help lay a few foundations for a fully digital government.
+            </p>
+            <p>
+                Ermine isn't monolithic. It's a small ~3000 line python flask application. We built it in less than 7 days to the point it could search find and act on common requests. If we can accomplish this much in 7 days with only two public servants chipping away at code, imagine what we can accomplish all together. The future of government is positively collaborative, and will be supported by a wide ecosystem of intelligent agents, like Ermine.
+            </p>
+            <p>
+                Explore more content in the options below.
+            </p>
+        </div>
+        <div id="help_guide_sw" class="help_guide">
+            <p class="h5">How to speak Weasel</p>
+            <p>
+                Ermine understands natural language, but along the way it does a few things to help us get the results we want. You can help by adjusting your speech patterns a bit. "Hi weasel I would like you to find for me the current sitting prime minister of our country" is probably not going to get you what you want. It also takes forever to say. You could easily try instead "contact justin trudeau" for their details (but you'd need to know who was PM). So you can also try "search lucky canada.ca who is the prime minister" and you'll get the PMs page.
+            </p>
+        </div>
+        <div id="help_guide_lm" class="help_guide">
+            <p class="h5">Limitations / Bugs</p>
+            <p>
+                Limitations and Known Bugs. Ermine is an experimental alpha. We built it because we could. We built it because we wanted to get better at Python, ML, AI, cloud, and a bunch of others tools we need to make sure we can be the best at our roles of supporting the Canada School of Public Service. Reading a book on it isn't enough. You have to do it to really learn. And we've learned a lot.
+            </p>
+            <p>
+                Bilingual - Ermine WILL be able to understand and serve content in both official languages. We've proven it works with a poc. To make it real we need to figure out which cloud provider API is right for us. Once that happens, we'll be able to easily translate even content we don't have officially languified. We can also try to create two AI models, one which recognizes each language, but routes the requests identically (just languified). Teaching our AI system is what will make Ermine actually helpful.
+            </p>
+            <p>
+                Voice Capture - This feature works in chrome on android, and chrome on desktop. It's supported everywhere yet. But Ermine happily falls back on standard search text. This can be resolved by making Ermine a hybrid-native app or a fully native android/ios app.
+            </p>
+            <p>
+                Voice Synthesis - This feature has better support so many browsers will actually speak back to you as the answer dictates. 
+            </p>
+            <p>
+                Overall Intelligence - This is a problem that will resolve itself with time and training data. The more we use it the better it is. On day one it barely understood anything. On day 7 it's reliably serving the common queries we've been feeding it. Even with data we haven't supplied it. It's inferring their types based on previous experience.
+            </p>
+            <p>
+                Quality of answers - The first Ermine knowledge base was manually curated as a test. The actual data set will be a mix of community suggestions, authoritative content from the public service, and core messages built in to handle the unknown. However, it's important to note, adding new functionality and answer capacity is trivial with the current design.
+            </p>
+        </div>
+        <div id="help_guide_ex" class="help_guide">
+            <p class="h5">Examples</p>
+            <p>
+                Here are some example searches you can try out in Ermine. If there's an action associated with the search, it will get done (like if you said "access canada.ca" you would be redirected). If you asked "why is open source important to my boss", weasel would give you an answer
+            </p>
+            <ul>
+                <li>why should I care about open source</li>
+                <li>why does digital matter to my department</li>
+                <li>what skills do I need for digital</li>
+                <hr style="color:#ddd;background:#ddd;"/>
+                <li>access my service canada account</li>
+                <li>access canada.ca</li>
+                <li>access CRA</li>
+                <hr style="color:#ddd;background:#ddd;"/>
+                <li>I want to learn french</li>
+                <li>I want to become a citizen</li>
+                <li>I want to move to canada</li>
+                <hr style="color:#ddd;background:#ddd;"/>
+                <li>Renew my passport</li>
+                <li>I want to renew my passport</li>
+                <li>trouvez une form du passport (coming soon)</li>
+                <li>search lucky CRA How tax revenue is spent</li>
+                <hr style="color:#ddd;background:#ddd;"/>
+                <li>watch my government in action on climate change</li>
+                <li>most popular pages</li>
+                <li>most popular downloads</li>
+                <li>most popular news</li>
+                <li>contact minister of finance</li>
+                <hr style="color:#ddd;background:#ddd;"/>
+                <li>visualize state of AI</li>
+                <li>busrides episode 5</li>    
+                <hr style="color:#ddd;background:#ddd;"/>
+                <li>search canada.ca all canada day celebrations</li>
+                <li>search lucky canada.ca all services</li>
+                <li>search lucky canada.ca who is the prime minister</li>
+                <hr style="color:#ddd;background:#ddd;"/>
+                <li>search GEDS treasury board</li>
+                <li>search GEDS justin trudeau</li>
+                <li>search GEDS minister of finance</li>
+                <hr style="color:#ddd;background:#ddd;"/>
+                <li>search lucky CPAC national defence</li>
+                <li>search CPAC climate change</li>
+                <hr style="color:#ddd;background:#ddd;"/>
+                <li>search lucky CRA the audit process for charities</li>
+                <li>search lucky Canada Revenue Agency T4</li>
+            </ul>
+        </div>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a id="b_help_guide_gi" href="#top"><span class="mif-home icon"></span>General Information</a></li>
+        <li><a id="b_help_guide_sw" href="#top"><span class="mif-books icon"></span>How to speak Weasel</a></li>
+        <li><a id="b_help_guide_ex" href="#top"><span class="mif-files-empty icon"></span>Examples</a></li>
+        <li><a id="b_help_guide_lm" href="#top"><span class="mif-files-empty icon"></span>Limitations/Bugs</a></li>
+        <li class="divider"></li>
+        <li><a href="https://github.com/CSPS-EFPC-DAAN/weasel"><span class="mif-github icon"></span>Github Source Code</a></li>
+        <li class="divider"></li>
+        <li><a id="weasel_help_dismiss"><span class="mif-help icon"></span>Close Help Guide</a></li>
+    </ul>
+</div>
+<div class="container" style="background: rgb(51,80,117);padding:1.3em;">
+    <div class="container" style="color:#afafaf;padding-bottom: 1em;">
+        <div class="row" style="padding: 1em;padding-top: 0.2em;">
+            <div class="ell-md-full cell-lg-7">
+                <span class="mif-multitrack-audio"></span><span id="weasel_listening_for">Weasel is listening in English<br><small>[Note: Auto-translate force-off]</small></span></li>
+
+            </div>
+            <div class="cell-md-full cell-lg-5">
+                <ul class="h-menu">
+                    <li class="cell-md-full cell-lg-6"><a href="#" id="speech_icon_yes_tlx">
+                        <small><span class="mif-sync-problem"></span>Enable Translate</small>
+                    </a></li> 
+                    <li class="cell-md-full cell-lg-6"><a href="#" id="speech_icon_no_tlx">
+                        <small><span class="mif-sync-disabled"></span>Disable Translate</small>
+                    </a></li>
+                </ul>
+                <span class="cell-md-full cell-lg-6"></span>
+            </div>
+        </div>
+    </div>
+    <form class="container" id="weaselfrm" method="get" action="{{url_for('weasel.render_ermine_answer')}}" style="padding-bottom:1.3em;">
+        <div class="speech">
+            <input type="hidden" id="recognition_language" name="recognition_language" value="{{recognition_language}}" />
+            <input type="hidden" id="recognition_lang_tlxd" name="recognition_lang_tlxd" value="{{recognition_lang_tlxd}}" />
+            {% if q == "Weasel Ready!" %}
+            <input 
+                type="text" 
+                name="weasel_ask" 
+                id="transcript" 
+                placeholder="Try something like 'why should I care about digital'" 
+            />
+            {% else %}
+            <input 
+                type="text" 
+                name="weasel_ask" 
+                id="transcript" 
+                placeholder="Try something like 'why should I care about digital'" 
+                value="{{q}}" 
+            />
+            {% endif %}
+        </div>
+    </form>
+    <ul class="h-menu"  class="cell-sm-full" >
+        <li class="cell-md-full cell-lg-2"><a href="#" id="speech_icon"><span class="mif-mic"></span> Say Question!</a></li>
+        <li class="cell-md-full cell-lg-2"><a href="#" id="send_text"><span class="mif-pencil"></span> Send Text!</a></li>
+        <li class="cell-md-full cell-lg-2"><a href="#" id="clear_text"><span class="mif-blocked"></span> Clear Search</a></li>
+        <li class="cell-md-full cell-lg-2"><a href="#" id="talk_back"><span class="mif-volume-medium"></span> Weasel, Read!</a></li> 
+        <li class="cell-md-full cell-lg-2"><a href="#" id="dont_talk_back"><span class="mif-volume-mute2"></span> Weasel, Shh!</a></li> 
+        <li class="cell-md-full cell-lg-2""><a href="#top" id="weasel_help_open"><span class="mif-help"></span> Help</a></li>
+    </ul>
+</div>
+<div style="background: white;" class="container" id="suggested_queries">
+    <div class="row" class="cell-12">
+        {% if q != "Weasel Ready!" %}
+        <div id="result_set" style="padding:1em;"><div id="weasel_return">{{weaselanswer}}</div></div>
+        {% endif %}
+        <div class="container">
+            <div class="row">
+                <div class="cell-md-4 cell-sm-full" style="padding:0.5em;">
+                    <h3>What should I ask?</h3>
+                    <ul>
+                    <li>why should I care about open source</li>
+                    <li>why does digital matter to my department</li>
+                    <li>what skills do I need for digital</li>
+                    <hr style="color:#ddd;background:#ddd;"/>
+                    <li>access my service canada account</li>
+                    <li>access canada.ca</li>
+                    <li>access CRA</li>
+                    <hr style="color:#ddd;background:#ddd;"/>
+                    <li>I want to learn french</li>
+                    <li>I want to become a citizen</li>
+                    <li>I want to move to canada</li>
+                    <hr style="color:#ddd;background:#ddd;"/>
+                    <li>Renew my passport</li>
+                    <li>I want to renew my passport</li>
+                    <li>trouvez une form du passport</li>
+                    <hr style="color:#ddd;background:#ddd;"/>
+                    <li>watch my government in action on climate change</li>
+                    <li>most popular pages</li>
+                    <li>most popular downloads</li>
+                    <li>most popular news</li>
+                    <li>contact minister of finance</li>
+                    </ul>
+                </div>
+                <div class="cell-md-4 cell-sm-full" style="padding:0.5em;">
+                    <h3>Deeper searches?</h3>
+                    <ul>
+                    <li>visualize state of AI</li>
+                    <li>busrides episode 5</li>
+                    <li>contact justin trudeau</li>
+                    <hr style="color:#ddd;background:#ddd;"/>
+                    <li>search canada.ca all canada day celebrations</li>
+                    <li>search lucky canada.ca all services</li>
+                    <li>search lucky canada.ca who is the prime minister</li>
+                    <hr style="color:#ddd;background:#ddd;"/>
+                    <li>search GEDS treasury board</li>
+                    <li>search GEDS justin trudeau</li>
+                    <li>search GEDS minister of finance</li>
+                    <hr style="color:#ddd;background:#ddd;"/>
+                    <li>search lucky CPAC national defence</li>
+                    <li>search CPAC climate change</li>
+                    <hr style="color:#ddd;background:#ddd;"/>
+                    <li>search lucky CRA the audit process for charities</li>
+                    <li>search lucky Canada Revenue Agency T4</li>
+                    </ul>
+                </div>                
+                <div class="cell-md-4 cell-sm-full"  style="padding:0.5em;">
+                    <h3>Why should I care?</h3>
+                    <p>
+                        This is a new way to engage with the Government of Canada and the Public Service. It's not meant to replace anything. It's meant to support everything. It doesn't want to own anything, it wants to ask others what they think and do its best to tell the human the reply. It's like a search engine. It's like an alexa or siri. It's like that colleague of yours you can always rely on to have that link to that file you need. It's a way to watch the house of commons. It's a way to get your T4 form. It's a way to find the path make Canada your home. 
+                    </p>
+                    <h3 style="padding-top: 1em;">How does this work?</h3>
+                    <p>
+                        It all starts with a question with intent. You can speak/type this into the weasel. It takes your words and through an AI framework figures out what you meant. Then it takes that intent and the bits it found and searches against it's know how. If it knows what to do it just does it. You want your T4? Here's the download page from CRA. You want to see your government in action on climate change. Here's CPAC for the recent session.
+                    </p>
+                    <p>
+                        <strong>What Weasel recognizes and what it knows will only grow with time.</strong> 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="remark primary cell-12" style="background: rgb(225,228,231);padding-bottom: 3em;">
+        <span id="q_asked" style="color:white;">{{q}}</span>
+        <div id="weasel_console" style="display: none;">
+            <p class="fg-gray"><span class="mif-calculator2"></span> Weasel Console</p>
+            <span class="mif-bubbles"></span> Answer (Weasel Picked):<pre>{{rawweaselanswer}}</pre>
+            <span class="mif-settings-ethernet"></span> Wit (AI Framework) Reply:<pre>{{rawjson}}</pre>
+            <span class="mif-flow-tree"></span> Weasel Knows (All Answers):<pre>{{rawanswerjson}}</pre>
+        </div>
+        <div id="toggle_weasel_console">
+            <button class="button secondary"><span class="mif-file-code"></span> Toggle Weasel Console</button>
+        </div>
+        <p>
+            Want to see how we built the weasel? Check out our <a href="https://github.com/CSPS-EFPC-DAAN/weasel">github repository for the code</a>. It's only about 3k lines of code. And we built the first working version in just under 24 hours.
+        </p>
+        <p>
+            Weasel knows about disruptive technology and how it matters to the Canadian government. And it learns with us, the more we try and teach it, the better its going to get. There's two sides to this. One is getting it to understand us (everyones working on that... recognition). But we want to focus on something a little different. We care more about learning moments. Each interaction we have is a chance to teach each other something. You teach weasel to behave. Weasel will tell you about new ideas in the private and public sectors which might inspire you. We want to give you the story behind it all, make AI, disruptive tech, biohacking, etc understandable to more than the techies and researchers. These new things are popping up out of the ground every day, creating a brand new digital landscape. We want to make it approachable. Get to the reasons things matter to you where you are. The impact of the digital changes coming our way are vast, but if we work together to demystify the magic... Well, pop goes the weasel?
+        </p>
+    </div>
+</footer>
+
+<!-- jQuery first, then Metro UI JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{{url_for('static', filename='weasel/js/index.js')}}"></script>
+<script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+</body>
+</html>
