@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>alpha | weasel | Using ai to better understand the digital government.</title>
-<link href="http://www.canada.ca/etc/designs/canada/wet-boew/assets/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="{{url_for('static', filename='weasel/images/favicon.ico')}}" rel="icon" type="image/x-icon"/>
 <!-- Metro 4 -->
 <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
 <link rel="stylesheet" href="{{url_for('static', filename='weasel/css/weasel.css')}}">
@@ -24,8 +24,10 @@
         <div class="cell-md-full cell-lg-8">
             <div class="row">
                 <ul class="h-menu">
-                    <li class="cell-md-full cell-lg-6"><a href="#" class="cell-sm" id="speech_icon_en"><span class="mif-multitrack-audio"></span> Recognize English</a></li> 
-                    <li class="cell-md-full cell-lg-6"><a href="#" id="speech_icon_fr"><span class="mif-multitrack-audio"></span> Reconnaître Français</a></li>
+                    <li class="cell-md-full cell-lg-3" style="background: transparent;"><a href="#" class="cell-sm" id="speech_icon_en"><span class="mif-multitrack-audio"></span> Recognize English</a></li> 
+                    <li class="cell-md-full cell-lg-3" style="background: transparent;"><a href="#" id="speech_icon_fr"><span class="mif-multitrack-audio"></span> Reconnaître Français</a></li>
+                    <li class="cell-md-full cell-lg-3" style="background: transparent;"><a href="#" id="dont_talk_back"><span class="mif-volume-mute2"></span> Weasel, Shh!</a></li>
+                    <li class="cell-md-full cell-lg-3" style="background: transparent;"><a href="#" id="clear_text"><span class="mif-blocked"></span> Clear Search</a></li>
                 </ul>
             </div>
             <div class="d-none d-none-sm d-none-md d-block-lg">
@@ -147,6 +149,13 @@
         <li><a id="weasel_help_dismiss"><span class="mif-help icon"></span>Close Help Guide</a></li>
     </ul>
 </div>
+{% if q != "Weasel Ready!" %}
+<div style="background: white;" class="container" id="suggested_answer">
+    <div class="row" class="cell-12">
+        <div id="result_set" style="padding:1em;"><div id="weasel_return"><h4>Weasel Thinks...</h4>{{weaselanswer}}</div></div>
+    </div>
+</div>
+{% endif %}
 <div class="container" style="background: rgb(51,80,117);padding:1.3em;">
     <div class="container" style="color:#afafaf;padding-bottom: 1em;">
         <div class="row" style="padding: 1em;padding-top: 0.2em;">
@@ -156,10 +165,10 @@
             </div>
             <div class="cell-md-full cell-lg-5">
                 <ul class="h-menu">
-                    <li class="cell-md-full cell-lg-6"><a href="#" id="speech_icon_yes_tlx">
+                    <li class="cell-md-full cell-lg-6" style="background: transparent;"><a href="#" id="speech_icon_yes_tlx">
                         <small><span class="mif-sync-problem"></span>Enable Translate</small>
                     </a></li> 
-                    <li class="cell-md-full cell-lg-6"><a href="#" id="speech_icon_no_tlx">
+                    <li class="cell-md-full cell-lg-6" style="background: transparent;"><a href="#" id="speech_icon_no_tlx">
                         <small><span class="mif-sync-disabled"></span>Disable Translate</small>
                     </a></li>
                 </ul>
@@ -190,19 +199,16 @@
         </div>
     </form>
     <ul class="h-menu"  class="cell-sm-full" >
-        <li class="cell-md-full cell-lg-2"><a href="#" id="speech_icon"><span class="mif-mic"></span> Say Question!</a></li>
-        <li class="cell-md-full cell-lg-2"><a href="#" id="send_text"><span class="mif-pencil"></span> Send Text!</a></li>
-        <li class="cell-md-full cell-lg-2"><a href="#" id="clear_text"><span class="mif-blocked"></span> Clear Search</a></li>
-        <li class="cell-md-full cell-lg-2"><a href="#" id="talk_back"><span class="mif-volume-medium"></span> Weasel, Read!</a></li> 
-        <li class="cell-md-full cell-lg-2"><a href="#" id="dont_talk_back"><span class="mif-volume-mute2"></span> Weasel, Shh!</a></li> 
-        <li class="cell-md-full cell-lg-2""><a href="#top" id="weasel_help_open"><span class="mif-help"></span> Help</a></li>
+        <li class="cell-md-full cell-lg-3"><a href="#" id="speech_icon"><span class="mif-mic"></span> Say Question!</a></li>
+        <li class="cell-md-full cell-lg-3"><a href="#" id="send_text"><span class="mif-pencil"></span> Send Text!</a></li>
+        <!--<li class="cell-md-full cell-lg-2"><a href="#" id="clear_text"><span class="mif-blocked"></span> Clear Search</a></li>-->
+        <li class="cell-md-full cell-lg-3"><a href="#" id="talk_back"><span class="mif-volume-medium"></span> Weasel, Read!</a></li> 
+        <!--<li class="cell-md-full cell-lg-2"><a href="#" class="dont_talk_back"><span class="mif-volume-mute2"></span> Weasel, Shh!</a></li>--> 
+        <li class="cell-md-full cell-lg-3"><a href="#top" id="weasel_help_open"><span class="mif-help"></span> Help</a></li>
     </ul>
 </div>
 <div style="background: white;" class="container" id="suggested_queries">
     <div class="row" class="cell-12">
-        {% if q != "Weasel Ready!" %}
-        <div id="result_set" style="padding:1em;"><div id="weasel_return">{{weaselanswer}}</div></div>
-        {% endif %}
         <div class="container">
             <div class="row">
                 <div class="cell-md-4 cell-sm-full" style="padding:0.5em;">
@@ -235,6 +241,9 @@
                 <div class="cell-md-4 cell-sm-full" style="padding:0.5em;">
                     <h3>Deeper searches?</h3>
                     <ul>
+                    <li>search courses A230</li>
+                    <li>learn Go</li>
+                    <li>learn AI</li>
                     <li>visualize state of AI</li>
                     <li>busrides episode 5</li>
                     <li>contact justin trudeau</li>
